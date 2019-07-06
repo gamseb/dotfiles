@@ -328,10 +328,15 @@ bindsym XF86AudioPrev exec playerctl previous
 
 #Startup applications -------------------------------------------------------------------------------------------------------
 
+#Startup script
+exec --no-startup-id ~/.dotfiles/scripts/startup_script.sh
+ 
 #Allows for multimonitor setups
 exec --no-startup-id xrandr --auto
 
-exec --no-startup-id pactl -- set-sink-volume 0 35% #Safety precaution for my ears
+#Safety precaution for my ears
+exec --no-startup-id pactl -- set-sink-volume 0 35% 
+
 #Start compositor for stansparency
 exec_always --no-startup-id compton 
 
@@ -347,7 +352,7 @@ exec_always --no-startup-id xfce4-clipman
 #Hides the mouse cursor when not needed 
 #exec --no-startup-id unclutter
 
-# Execute tutanota email service 
+#Execute tutanota email service 
 #exec --no-startup-id tutanota-desktop-linux
 
 #Always start redshift to filter out blue light 
