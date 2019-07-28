@@ -6,5 +6,5 @@ if [ $CURRENT_KEYBOARD == "cz" ]; then
   setxkbmap us
 elif [ $CURRENT_KEYBOARD == "us" ]; then 
   notify-send "Setting the keyboard to czech"
-  setxkbmap cz
+  setxkbmap cz qwerty
 fi
