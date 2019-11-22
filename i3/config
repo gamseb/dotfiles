@@ -41,7 +41,7 @@ floating_modifier $mod
 #bindsym $mod+f+g exec ~/.local/share/tresorit/tresorit
 bindcode $mod+Shift+47 exec --no-startup-id thunar
 bindcode $mod+Shift+48 exec --no-startup-id firefox
-bindcode $mod+Shift+49 exec leafpad ~/.config/i3/config
+bindcode $mod+Shift+49 exec kate ~/.config/i3/config
 bindcode $mod+Shift+34 exec --no-startup-id audacious
 #bindsym $mod+Shift+minus exec --no-startup-id encryptic
 #bindsym $mod+i exec vlc
@@ -55,7 +55,7 @@ bindcode $mod+Shift+34 exec --no-startup-id audacious
 ##########################################################################
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill 
@@ -70,7 +70,8 @@ set $lock-screen-color 191836
 bindsym $mod+Shift+p exec i3lock --color=$lock-screen-color
 #bindsym $mod+Shift+p exec --no-startup-id slock
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -nb '$bg-color'
+#bindsym $mod+d exec --no-startup-id dmenu_run -nb '$bg-color'
+bindsym $mod+d exec rofi -display-drun "" -modi drun#run -show drun -font "DejaVu Sans 10" -show-icons
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -131,29 +132,18 @@ bindcode $mod+94 exec ~/.dotfiles/scripts/keyboard_switch_cz_us.sh -SIGRTMIN+11 
 #Workspaces ---------------------------------------------------------------------------------------------------------------------
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-#           
 # 1 - 10
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-# F1 - F10
-set $ws11 "F1♪"
-set $ws12 "F2"
-set $ws13 "F3"
-set $ws14 "F4"
-set $ws15 "F5" 
-set $ws16 "F6"
-set $ws17 "F7"
-set $ws18 "F8"
-set $ws19 "F9" 
-set $ws20 "F10" 
+
 #NOTE: https://askubuntu.com/questions/107085/how-to-set-resolutions-with-xrandr-using-multiple-monitors
 #Or even better use Arandr
 
@@ -168,16 +158,7 @@ bindcode $mod+16 workspace $ws7
 bindcode $mod+17 workspace $ws8
 bindcode $mod+18 workspace $ws9
 bindcode $mod+19 workspace $ws10
-bindcode $mod+67 workspace $ws11
-bindcode $mod+68 workspace $ws12
-bindcode $mod+69 workspace $ws13
-bindcode $mod+70 workspace $ws14
-bindcode $mod+71 workspace $ws15
-bindcode $mod+72 workspace $ws16
-bindcode $mod+73 workspace $ws17
-bindcode $mod+74 workspace $ws18
-bindcode $mod+75 workspace $ws19
-bindcode $mod+76 workspace $ws20
+
 # move focused container to workspace
 bindcode $mod+Shift+10 move container to workspace $ws1
 bindcode $mod+Shift+11 move container to workspace $ws2
@@ -189,29 +170,19 @@ bindcode $mod+Shift+16 move container to workspace $ws7
 bindcode $mod+Shift+17 move container to workspace $ws8
 bindcode $mod+Shift+18 move container to workspace $ws9
 bindcode $mod+Shift+19 move container to workspace $ws10
-bindcode $mod+Shift+67 move container to workspace $ws11
-bindcode $mod+Shift+68 move container to workspace $ws12
-bindcode $mod+Shift+69 move container to workspace $ws13
-bindcode $mod+Shift+70 move container to workspace $ws14
-bindcode $mod+Shift+71 move container to workspace $ws15
-bindcode $mod+Shift+72 move container to workspace $ws16
-bindcode $mod+Shift+73 move container to workspace $ws17
-bindcode $mod+Shift+74 move container to workspace $ws18
-bindcode $mod+Shift+75 move container to workspace $ws19
-bindcode $mod+Shift+76 move container to workspace $ws20
+
 #Return to previous workspace:
 bindsym $mod+Tab workspace back_and_forth
 #workspace_auto_back_and_forth yes # When you press a workspace button twice it returns you back
 # Assigning workspaces
-assign [class="firefox"] → $ws2
+assign [class="Firefox"] → $ws2
 assign [class="jetbrains-pycharm-ce"] → $ws3
 assign [class="jetbrains-idea-ce"] → $ws3
 assign [class="Leafpad"] → $ws3
-assign [class="tutanota-desktop"] → $ws12
-assign [class="Audacious"] → $ws11
-assign [class="vlc"] → $ws11
-assign [class="discord"] → $ws12
-assign [class="Steam"] → $ws14
+assign [class="Audacious"] → $ws3
+assign [class="vlc"] → $ws3
+assign [class="discord"] → $ws4
+assign [class="Steam"] → $ws8
 
 
 
@@ -223,12 +194,12 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes.' 'i3-msg exit'"
 
-bindsym $mod+u resize shrink width 10 px or 10 ppt
-bindsym $mod+i resize grow height 10 px or 10 ppt
-bindsym $mod+o resize shrink height 10 px or 10 ppt
-bindsym $mod+p resize grow width 10 px or 10 ppt
+bindsym $mod+u resize shrink width 35 px or 35 ppt
+bindsym $mod+i resize grow height 35 px or 35 ppt
+bindsym $mod+o resize shrink height 35 px or 35 ppt
+bindsym $mod+p resize grow width 35 px or 35 ppt
 
 # Send window to the monitor to the left or right
 bindsym $mod+Shift+Left move workspace to output left
@@ -253,8 +224,8 @@ set $inactive-text-color #f3f4b5
 set $urgent-bg-color     #f55541
 
 #Wallpaper  (-z is for random picture from the folder )
-#exec_always feh --bg-scale -z ~/Pictures/wallpapers/wallpapers_to_repeat
-exec_always feh --bg-scale -z ~/Pictures/wallpapers/outrun
+exec_always feh --bg-scale -z ~/Pictures/wallpapers/wallpapers_to_repeat
+#exec_always feh --bg-scale -z ~/Pictures/wallpapers/outrun
 #Change wallpaper manually without having to reset
 #bindsym $mod+Shift+Home exec feh --bg-scale -z ~/Pictures/wallpapers/wallpapers_to_repeat
 #exec --no-startup-id hsetroot -solid '$inactive-bg-color' #sets the background to a solid colour 
@@ -297,15 +268,15 @@ bar {
 #FN keys -------------------------------------------------------------------------------------------------------------------
 # Pulse Audio controls
 # Incrase volume
-bindsym Shift+XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume 0 +1% #increase sound volume a little
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym Control+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +15% #increase sound volume by more
+bindsym Shift+XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume 0 +1% && pkill -RTMIN+10 i3blocks #increase sound volume a little
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+10 i3blocks #increase sound volume
+bindsym Control+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +15% && pkill -RTMIN+10 i3blocks #increase sound volume by more
 # Decrase volume
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1% #decrease sound volume a little
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym Control+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -15% #decrease sound volume by more
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1% && pkill -RTMIN+10 i3blocks #decrease sound volume a little
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+10 i3blocks #decrease sound volume
+bindsym Control+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -15% && pkill -RTMIN+10 i3blocks #decrease sound volume by more
 # mute sound
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+10 i3blocks # mute sound
 
 # Screen brightness controls
 bindsym Shift+XF86MonBrightnessUp exec xbacklight -inc 1 # increase screen brightness
@@ -317,7 +288,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 bindsym Control+XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec sh ~/Documents/scripts/toggletouchpad.sh # toggle touchpad
+#bindsym XF86TouchpadToggle exec sh ~/Documents/scripts/toggletouchpad.sh # toggle touchpad
 
 # Media player controls
 #bindsym XF86AudioPlay exec playerctl play
@@ -360,7 +331,7 @@ exec_always --no-startup-id xfce4-clipman
 #exec redshift
 
 #Always execute tresorit
-exec ~/.local/share/tresorit/tresorit-daemon 
+#exec ~/.local/share/tresorit/tresorit-daemon 
 
 #-------------------------------------------------------------------------------------------------------------------------------
 # Take a screenshot upon pressing $mod+x (select an area)
@@ -372,7 +343,9 @@ bindsym --release $mod+x exec --no-startup-id "maim -s -p 0 -c 0.96,0.5,0.09 $HO
 
 # Window styles-----------------------------------------------------------------------------------------------------------------
 # Remove top panel from firefox windows
-for_window [class="firefox"] border pixel 0
+for_window [class="Firefox"] border pixel 0
+for_window [class="jetbrains-pycharm-ce"] border pixel 0
+
 
 ###########################
 # xbindkeys -k            #
