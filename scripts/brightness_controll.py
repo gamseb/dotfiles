@@ -20,7 +20,7 @@ def control_brightness(inc, dec):
     print("Current brightness: {} \n Target brightness: {}".format(brightness_number, target_brightness))
 
     subprocess.run(["xrandr", "--output", "eDP-1", "--brightness", str(target_brightness)])
-    subprocess.run("notify-send 'The brightness has been changed to: {}'".format(str(target_brightness)[:4]), shell=True)
+    subprocess.run("notify-send -t 450 'The brightness has been changed to: {}'".format(str(target_brightness)[:4]), shell=True)
 
 
 
