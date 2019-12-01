@@ -29,6 +29,22 @@ def set_brightness(value):
     subprocess.run("notify-send -t 450 'The brightness has been changed to: {}'".format(str(value)[:4]), shell=True)
 
 
+def activate_night_mode():
+    """
+    Night light (limiting blue light)
+    Magenta: 1.1:0.8:0.7
+    Lighter reddish colour 1.1:0.9:0.9
+    :return:
+    """
+    subprocess.run(["xrandr", "--output", "eDP-1", "--gamma", "1.1:0.9:0.9"])
+    subprocess.run("notify-send -t 450 'Night mode has been activated'", shell=True)
+
+
+def activate_day_mode():
+    subprocess.run(["xrandr", "--output", "eDP-1", "--gamma", "1:1:1"])
+    subprocess.run("notify-send -t 450 'Day mode has been activated'", shell=True)
+
+
 def parse_arguments():
     """
     Parses the arguments to know by how much to change the brightness
@@ -38,6 +54,8 @@ def parse_arguments():
     parser.add_argument("-inc", help="Increases the brightness", type=float)
     parser.add_argument("-dec", help="Decreases the brightness", type=float)
     parser.add_argument("-set", help="Set the brightness", type=float)
+    parser.add_argument("-night", help="Set night mode", action='store_true')
+    parser.add_argument("-day", help="Set day mode", action='store_true')
 
     args = parser.parse_args()
 
@@ -49,6 +67,13 @@ if __name__ == '__main__':
     inc_value = vars(arguments)["inc"]
     dec_value = vars(arguments)["dec"]
     set_value = vars(arguments)["set"]
+    night_light = vars(arguments)["night"]
+    day_light = vars(arguments)["day"]
+
+    if day_light is True:
+        activate_day_mode()
+    if night_light is True:
+        activate_night_mode()
 
     # print("Inc:{} n\ Dec:{}
     if set_value is not None:
