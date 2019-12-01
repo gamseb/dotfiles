@@ -25,6 +25,9 @@ font pango:System San Francisco Display 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Keyboard languages
+bindcode $mod+Shift+51 exec python3 ~/.dotfiles/scripts/keyboard_controll.py
+
 ################################ GAPS ####################################
 # i3 GAPS IS NOT INSTALLED BECAUSE IT IS WONKY AS HELL (or is it?)
 #Removes the top bar (requred for i3 gaps)
