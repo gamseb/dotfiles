@@ -279,13 +279,17 @@ bindsym Control+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+10 i3blocks # mute sound
 
 # Screen brightness controls
-bindsym Shift+XF86MonBrightnessUp exec xrandr --output eDP-1 --brightness 1
+bindsym Shift+XF86MonBrightnessUp exec ~/.dotfiles/scripts/brightness_controll.py -set 1
 bindsym XF86MonBrightnessUp exec ~/.dotfiles/scripts/brightness_controll.py -inc 0.1 # increase screen brightness
 bindsym Control+XF86MonBrightnessUp exec ~/.dotfiles/scripts/brightness_controll.py -inc 0.2
 
-bindsym Shift+XF86MonBrightnessDown exec xrandr --output eDP-1 --brightness 0.3
+bindsym Shift+XF86MonBrightnessDown exec ~/.dotfiles/scripts/brightness_controll.py -set 0.3
 bindsym XF86MonBrightnessDown exec ~/.dotfiles/scripts/brightness_controll.py -dec 0.1
 bindsym Control+XF86MonBrightnessDown exec ~/.dotfiles/scripts/brightness_controll.py -dec 0.2
+
+# Nightmode
+bindsym $mod+Shift+XF86MonBrightnessDown exec ~/.dotfiles/scripts/brightness_controll.py -night
+bindsym $mod+Shift+XF86MonBrightnessUp exec ~/.dotfiles/scripts/brightness_controll.py -day
 
 # Touchpad controls
 #bindsym XF86TouchpadToggle exec sh ~/Documents/scripts/toggletouchpad.sh # toggle touchpad
