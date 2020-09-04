@@ -40,9 +40,12 @@ floating_modifier $mod
 ########################## PROGRAMS SHORTCUTS ############################
 #bindsym $mod+f+g exec ~/.local/share/tresorit/tresorit
 bindcode $mod+Shift+47 exec --no-startup-id thunar
-bindcode $mod+Shift+48 exec --no-startup-id firefox
+bindcode $mod+Shift+48 exec --no-startup-id firejail firefox
+bindcode $mod+Shift+34 exec --no-startup-id VSCodium
 bindcode $mod+Shift+49 exec leafpad ~/.config/i3/config
-bindcode $mod+Shift+34 exec --no-startup-id audacious
+# bindcode $mod+Shift+34 exec --no-startup-id audacious
+bindcode $mod+Shift+51 exec --no-startup-id ~/Software/StandardNotes/Standard-Notes-3.3.3.AppImage
+
 #bindsym $mod+Shift+minus exec --no-startup-id encryptic
 #bindsym $mod+i exec vlc
 ##########################################################################
@@ -70,7 +73,8 @@ set $lock-screen-color 191836
 bindsym $mod+Shift+p exec i3lock --color=$lock-screen-color
 #bindsym $mod+Shift+p exec --no-startup-id slock
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -nb '$bg-color'
+#bindsym $mod+d exec --no-startup-id dmenu_run -nb '$bg-color'
+bindsym $mod+d exec rofi -modi drun#run -show drun -font "DejaVu Sans 10" -show-icons
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -99,7 +103,7 @@ bindsym $mod+v split toggle
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+#bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -116,7 +120,9 @@ bindsym $mod+a focus parent
 bindcode $mod+29 focus child # $mod+y 
 
 # make window sticky (so it shows on all workspaces) - sticky enable|disable|toggle
-bindsym $mod+Prior sticky toggle
+#bindsym $mod+Prior sticky toggle
+bindsym $mod+Shift+n sticky toggle
+
 
 # This allows for caps lock status to be shown on the i3 tab
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+10 i3blocks
@@ -139,7 +145,7 @@ set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
-set $ws7 "7"
+set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
@@ -254,7 +260,8 @@ set $urgent-bg-color     #f55541
 
 #Wallpaper  (-z is for random picture from the folder )
 #exec_always feh --bg-scale -z ~/Pictures/wallpapers/wallpapers_to_repeat
-exec_always feh --bg-scale -z ~/Pictures/wallpapers/outrun
+#exec_always feh --bg-scale -z ~/Pictures/wallpapers/outrun
+exec_always feh --bg-scale -z ~/Pictures/wallpapers/darkest_dungeon
 #Change wallpaper manually without having to reset
 #bindsym $mod+Shift+Home exec feh --bg-scale -z ~/Pictures/wallpapers/wallpapers_to_repeat
 #exec --no-startup-id hsetroot -solid '$inactive-bg-color' #sets the background to a solid colour 
@@ -343,8 +350,11 @@ exec_always --no-startup-id compton
 #Always starts the KDE connect
 exec_always --no-startup-id kdeconnect-indicator
 
-#Always start the wifi aplet
+#Always start the wifi applet
 exec_always --no-startup-id nm-applet
+
+#Always start the volume applet
+exec_always --no-startup-id volumeicon
 
 #Always start xfce4-clipman
 exec_always --no-startup-id xfce4-clipman
@@ -373,6 +383,11 @@ bindsym --release $mod+x exec --no-startup-id "maim -s -p 0 -c 0.96,0.5,0.09 $HO
 # Window styles-----------------------------------------------------------------------------------------------------------------
 # Remove top panel from firefox windows
 for_window [class="firefox"] border pixel 0
+for_window [class="krita"] border pixel 0
+for_window [class="jetbrains-pycharm"] border pixel 0
+for_window [class="VSCodium"] border pixel 0
+for_window [class="Chromium"] border pixel 0
+
 
 ###########################
 # xbindkeys -k            #
